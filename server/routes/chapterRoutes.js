@@ -1,0 +1,13 @@
+const express=require("express")
+const chapterController=require("../controllers/chapterController")
+const verifyJWT=require("../middleware/verifyJWT")
+const verifyAdmin=require("../middleware/verifyAdmin")
+const router=express.Router()
+router.use(verifyJWT)
+router.get("/",chapterController.getAllChapters)
+router.get("/:id",chapterController.getChapterById)
+router.use(verifyAdmin)
+router.post("/",chapterController.addChapter)
+router.put("/",chapterController.updateChapter)
+router.delete("/",chapterController.deleteChapter)
+module.exports=router
